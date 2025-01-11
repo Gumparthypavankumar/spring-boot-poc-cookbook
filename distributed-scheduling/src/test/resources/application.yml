@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: DistributedScheduling
+  datasource:
+    url: jdbc:h2:mem:distributedScheduling
+    username: sa
+    password: password
+
+server:
+  port: 0
