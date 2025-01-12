@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
  * @author gumparthypavankumar[pk] created on 28/12/24
  */
 @Entity
-@Table(name = "users")
+@Table(name = "cd_users")
 public class User extends BaseEntity<Long> {
 
   @Id
