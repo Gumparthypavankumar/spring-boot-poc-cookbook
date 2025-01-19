@@ -1,7 +1,10 @@
 package com.pavan.domain;
 
+import com.pavan.enumeration.EmailDeliveryStatusType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,10 +33,19 @@ public class User extends BaseEntity<Long> {
   @Column(name = "email", nullable = false, unique = true)
   private String email;
 
-  public User(String firstName, String lastName, String email) {
+  @Column(name = "email_delivery_status")
+  @Enumerated(value = EnumType.STRING)
+  private EmailDeliveryStatusType emailDeliveryStatus;
+
+  public User() {
+  }
+
+  public User(String firstName, String lastName, String email,
+              EmailDeliveryStatusType emailDeliveryStatus) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
+    this.emailDeliveryStatus = emailDeliveryStatus;
   }
 
   @Override
@@ -58,7 +70,11 @@ public class User extends BaseEntity<Long> {
     return email;
   }
 
-  public void setId(Long id) {
-    this.id = id;
+  public EmailDeliveryStatusType getEmailDeliveryStatus() {
+    return emailDeliveryStatus;
+  }
+
+  public void setEmailDeliveryStatus(EmailDeliveryStatusType emailDeliveryStatus) {
+    this.emailDeliveryStatus = emailDeliveryStatus;
   }
 }

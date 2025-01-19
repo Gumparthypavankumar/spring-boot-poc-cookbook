@@ -4,9 +4,15 @@ server:
 spring:
   sql:
     init:
-      mode: EMBEDDED
+      mode: ALWAYS
   application:
     name: DistributedScheduling
+  mail:
+    host: ${SMTP_HOST}
+    username: ${SMTP_USERNAME}
+    password: ${SMTP_PASSWORD}
+  config:
+    import: optional:secret.properties
   jpa:
     open-in-view: false
     hibernate:
@@ -14,13 +20,14 @@ spring:
     properties:
       hibernate:
         generate_statistics: false
+        format_sql: false
+        show_sql: false
+
   datasource:
-    url: jdbc:h2:mem:distributedScheduling?createDatabaseIfNotExist=true
-    username: sa
-    password:
-  h2:
-    console:
-      enabled: true
+    url: jdbc:mysql://${SPRING_DATASOURCE_HOST}:3306/distributed_scheduling?createDatabaseIfNotExist=true
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+
 logging:
   level:
     root: INFO

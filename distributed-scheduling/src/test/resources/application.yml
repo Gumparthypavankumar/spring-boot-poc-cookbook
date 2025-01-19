@@ -1,10 +1,18 @@
 spring:
   application:
     name: DistributedScheduling
+  config:
+    import: optional:secret.properties
+  mail:
+    host: ${SMTP_HOST}
+    username: ${SMTP_USERNAME}
+    password: ${SMTP_PASSWORD}
   datasource:
     url: jdbc:h2:mem:distributedScheduling?createDatabaseIfNotExist=true
     username: sa
     password:
-
+  h2:
+    console:
+      enabled: false
 server:
   port: 0
